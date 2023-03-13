@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>EX: Formulário Módulo 10</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>EX: Formulário Módulo 10</h1>
+        </div>
+    </header>
+    <section>
+    <div class="container">
+        <form>
+            <div class="list-form">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" minlength="3">
+            </div>
+            <div class="list-form">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="list-form">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" minlength="10">
+            </div>
+            <div class="list-form">
+                <label for="cpf">CPF</label>
+                <input type="text" id="cpf" name="cpf" minlength="11">
+            </div>
+            <div class="list-form">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep" minlength="8">
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    </section>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="./mask js/jquery.mask.min.js"></script>
+    <script src="./mask js/jquery.validate.min.js"></script>
+    <script src="./mask js/messages_pt_BR.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#telefone').mask('(00) 00000-0000')
+
+            $('#cpf').mask('000.000.000-00')
+
+            $('#cep').mask('00000-000')
+
+            $('form').validate({
+                rules: {
+                    nome: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    telefone: {
+                        required: true
+                    },
+                    cpf: {
+                        required: true,
+                    },
+                    cep: {
+                        required: true
+                    }
+                },
+                messages: {
+                    nome: 'Por favor, insira seu nome'
+                },
+                submitHandler: function(form) {
+                    console.log(form)
+                },
+                invalidHandler: function(evento, validador) {
+                    let camposIncorretos = validador.numberOfInvalids();
+                    if (camposIncorretos) {
+                        alert(`Atenção ${camposIncorretos} campos estão incorretos` )
+                    }
+                }
+
+            })
+        })
+    </script>
+</body>
+</html>
